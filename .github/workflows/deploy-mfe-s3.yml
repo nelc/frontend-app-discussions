@@ -1,7 +1,5 @@
 name: MFE S3 Bucket Deployment 🚀
 
-env:
-  RELEASE_VERSION: palm
 
 on:
   push:
