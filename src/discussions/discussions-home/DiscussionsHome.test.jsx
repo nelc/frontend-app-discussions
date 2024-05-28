@@ -169,10 +169,11 @@ describe('DiscussionsHome', () => {
       });
     await executeThunk(fetchThreads(courseId), store.dispatch, store.getState);
     await renderComponent(`/${courseId}/${searchByEndPoint}`);
+    const foundComponent = await screen.findByText(result);
 
     waitFor(() => {
-      expect(screen.queryByText(result)).toBeInTheDocument();
-    });
+      expect(foundComponent).toBeInTheDocument();
+    }, { timeout: 5000 });
   });
 
   it.each([
@@ -199,9 +200,11 @@ describe('DiscussionsHome', () => {
       await executeThunk(fetchCourseTopicsV3(courseId), store.dispatch, store.getState);
       await renderComponent(`/${courseId}/${searchByEndPoint}`);
 
+      const foundComponent = await screen.findByText('No topic selected');
+
       waitFor(() => {
-        expect(screen.queryByText('No topic selected')).toBeInTheDocument();
-      });
+        expect(foundComponent).toBeInTheDocument();
+      }, { timeout: 5000 });
     },
   );
 
@@ -209,10 +212,11 @@ describe('DiscussionsHome', () => {
     axiosMock.onGet(getDiscussionsConfigUrl(courseId)).reply(200, {});
     await executeThunk(fetchCourseConfig(courseId), store.dispatch, store.getState);
     await renderComponent(`/${courseId}/learners`);
+    const foundComponent = await screen.findByText('Nothing here yet');
 
     waitFor(() => {
-      expect(screen.queryByText('Nothing here yet')).toBeInTheDocument();
-    });
+      expect(foundComponent).toBeInTheDocument();
+    }, { timeout: 5000 });
   });
 
   it('should display post editor form when click on add a post button for posts', async () => {

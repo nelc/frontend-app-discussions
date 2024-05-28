@@ -148,14 +148,19 @@ describe('InContext Topics View', () => {
   it('A section group should have only a title and required subsections.', async () => {
     await setupMockResponse();
     renderComponent();
-    const sectionGroups = await screen.getAllByTestId('section-group');
+
+    const componentFound = await screen.findByTestId('redux-provider');
+    expect(componentFound).toBeInTheDocument();
+
+    const sectionGroups = await screen.findAllByTestId('section-group');
 
     coursewareTopics.forEach(async (topic, index) => {
       await waitFor(async () => {
         const stats = await sectionGroups[index].querySelectorAll('.icon-size:not([data-testid="subsection-group"].icon-size)');
         const subsectionGroups = await within(sectionGroups[index]).getAllByTestId('subsection-group');
 
-        expect(within(sectionGroups[index]).queryByText(topic.displayName)).toBeInTheDocument();
+        const displayNameFound = await within(sectionGroups[index]).findByText(topic.displayName);
+        expect(displayNameFound).toBeInTheDocument();
         expect(stats).toHaveLength(0);
         expect(subsectionGroups).toHaveLength(2);
       });
@@ -165,6 +170,10 @@ describe('InContext Topics View', () => {
   it('The subsection should have a title name, be clickable, and have the stats', async () => {
     await setupMockResponse();
     renderComponent();
+
+    const componentFound = await screen.findByTestId('redux-provider');
+    expect(componentFound).toBeInTheDocument();
+
     const subsectionObject = coursewareTopics[0].children[0];
     const subSection = await container.querySelector(`[data-subsection-id=${subsectionObject.id}]`);
     const subSectionTitle = await within(subSection).queryByText(subsectionObject.displayName);
@@ -177,6 +186,9 @@ describe('InContext Topics View', () => {
   it('Subsection names should be clickable and redirected to the units lists', async () => {
     await setupMockResponse();
     renderComponent();
+
+    const componentFound = await screen.findByTestId('redux-provider');
+    expect(componentFound).toBeInTheDocument();
 
     const subsectionObject = coursewareTopics[0].children[0];
     const subSection = await container.querySelector(`[data-subsection-id=${subsectionObject.id}]`);
@@ -198,6 +210,10 @@ describe('InContext Topics View', () => {
   it('The number of units should be matched with the actual unit length.', async () => {
     await setupMockResponse();
     renderComponent();
+
+    const componentFound = await screen.findByTestId('redux-provider');
+    expect(componentFound).toBeInTheDocument();
+
     const subSection = await container.querySelector(`[data-subsection-id=${coursewareTopics[0].children[0].id}]`);
 
     await act(async () => { fireEvent.click(subSection); });
@@ -211,6 +227,10 @@ describe('InContext Topics View', () => {
   it('A unit should have a title and should be clickable', async () => {
     await setupMockResponse();
     renderComponent();
+
+    const componentFound = await screen.findByTestId('redux-provider');
+    expect(componentFound).toBeInTheDocument();
+
     const subSectionObject = coursewareTopics[0].children[0];
     const unitObject = subSectionObject.children[0];
 
