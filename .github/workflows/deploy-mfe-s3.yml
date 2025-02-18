@@ -52,6 +52,12 @@ jobs:
     - name: npm Install
       run: npm install
 
+    - name: pull translation
+      if: ${{ vars.ATLAS_OPTIONS != '' }}
+      run: |
+        export PATH="$(pwd)/node_modules/.bin:$PATH"
+        make OPENEDX_ATLAS_PULL=true ATLAS_OPTIONS="${{ vars.ATLAS_OPTIONS }}" pull_translations
+
     - name: npm Build  # check env variables of repo.
       run: npm run build
       env:
@@ -65,7 +71,7 @@ jobs:
       run: cat dist/index.html
 
     - name: Share artifact inside workflow
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ vars.APP_ID }}-dist-artifact
         path: dist
@@ -79,7 +85,7 @@ jobs:
     steps:
       # get build artifact
       - name: Get artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ vars.APP_ID }}-dist-artifact
 
