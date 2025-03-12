@@ -10,21 +10,9 @@ on:
     branches:
        - "**open-rc**"
 
-  workflow_dispatch:
-
 jobs:
-  deploy-mfe:
-    uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@main
+  deploy:
+    uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@afg/fix-reusable-actions
     with:
-      NODE_VERSION: ${{ vars.NODE_VERSION }}
-      ATLAS_OPTIONS: ${{ vars.ATLAS_OPTIONS }}
-      PUBLIC_PATH_CDN: ${{ vars.PUBLIC_PATH_CDN }}
-      APP_ID: ${{ vars.APP_ID }}
-      MFE_CONFIG_API_URL: ${{ vars.MFE_CONFIG_API_URL }}
-      BUCKET_NAME: ${{ vars.BUCKET_NAME }}
-      PROD_BRANCH: 'open-release/redwood.nelp'
-    secrets:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-      AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+     PROD_BRANCH: 'open-release/redwood.nelp'
+    secrets: inherit
