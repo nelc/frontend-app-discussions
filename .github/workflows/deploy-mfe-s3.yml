@@ -1,18 +1,38 @@
+# This workflow deploys a Micro Frontend (MFE) application to an AWS S3 bucket
+# 
+# Purpose:
+# - Deploys the compiled frontend assets to an S3 bucket for hosting
+# - Uses a reusable workflow from nelc/actions-hub
+# - Can target either staging or production environments
+#
+# Trigger:
+# - Manual trigger only (workflow_dispatch)
+#
+# Inputs:
+# - environment: Choose between 'stage' (default) or 'prod' environments
+#
+# Notes:
+# - For production deployments, the workflow must be run from the production branch
+# - Stage deployments can be run from any branch
+
 name: MFE S3 Bucket Deployment 🚀
 
 on:
-  push:
-    branches:
-      - open-release/redwood.nelp
-      - open-rc/redwood.nelp
-
-  pull_request:
-    branches:
-       - "**open-rc**"
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy:'
+        required: true
+        default: 'stage'
+        type: choice
+        options:
+          - stage
+          - prod
 
 jobs:
   deployment:
+    if: github.ref_name == github.event.repository.default_branch || inputs.environment == 'stage'
     uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@main
     with:
-     PROD_BRANCH: 'open-release/redwood.nelp'
+      ENVIRONMENT: ${{ inputs.environment }}
     secrets: inherit
