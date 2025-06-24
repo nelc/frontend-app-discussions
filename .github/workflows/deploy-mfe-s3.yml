@@ -28,10 +28,36 @@ on:
         options:
           - stage
           - prod
+          - advanced
+      BUCKET_NAME:
+        description: 'S3 bucket (advanced only)'
+        required: false
+        type: string
+        default: ''
+      PUBLIC_PATH_CDN:
+        description: 'CDN path (advanced only)'
+        required: false
+        type: string
+      AWS_CLOUDFRONT_DISTRIBUTION_ID:
+        description: 'CloudFront ID (advanced only)'
+        required: false
+        type: string
 
 jobs:
-  deployment:
-    if: github.ref_name == github.event.repository.default_branch || inputs.environment == 'stage'
+  deploy_advanced_config:
+    name: Deploy (advanced)
+    if: inputs.environment == 'advanced'
+    uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@main
+    with:
+      ENVIRONMENT: ${{ inputs.environment }}
+      BUCKET_NAME: ${{ inputs.BUCKET_NAME }}
+      PUBLIC_PATH_CDN: ${{ inputs.PUBLIC_PATH_CDN }}
+      AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ inputs.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+    secrets: inherit
+
+  deploy_predefined_env:
+    name: Deploy (stage/prod)
+    if: inputs.environment != 'advanced'
     uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@main
     with:
       ENVIRONMENT: ${{ inputs.environment }}
