@@ -77,7 +77,7 @@ const LearnerFilterBar = () => {
       className="filter-bar collapsible-card-lg border-0"
     >
       <Collapsible.Trigger className="collapsible-trigger border-0">
-        <span className="text-primary-700 pr-4">
+        <span className="dark-black-color pr-4">
           {intl.formatMessage(messages.sortFilterStatus, {
             sort: currentSorting,
           })}

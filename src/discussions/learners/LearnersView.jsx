@@ -65,7 +65,7 @@ const LearnersView = () => {
   }, [courseConfigLoadingStatus, learners]);
 
   return (
-    <div className="d-flex flex-column border-right border-light-400">
+    <div className="d-flex flex-column">
       {!usernameSearch && <LearnerFilterBar /> }
       <div className="border-bottom border-light-400" />
       {usernameSearch && (

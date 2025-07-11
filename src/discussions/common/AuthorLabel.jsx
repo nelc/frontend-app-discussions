@@ -31,7 +31,7 @@ const AuthorLabel = ({
 
   const isRetiredUser = author ? author.startsWith('retired__user') : false;
   const showTextPrimary = !authorLabelMessage && !isRetiredUser && !alert;
-  const className = classNames('d-flex align-items-center', { 'mb-0.5': !postOrComment }, labelColor);
+  const className = classNames('d-flex align-items-center dark-black-color', { 'mb-0.5': !postOrComment }, labelColor);
 
   const showUserNameAsLink = linkToProfile && author && author !== intl.formatMessage(messages.anonymous)
                              && !enableInContextSidebar;

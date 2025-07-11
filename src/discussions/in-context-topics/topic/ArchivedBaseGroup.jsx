@@ -34,7 +34,7 @@ const ArchivedBaseGroup = ({
         className="discussion-topic-group d-flex flex-column text-primary-500"
         data-testid="archived-group"
       >
-        <div className="pt-3 px-4 font-weight-bold">{intl.formatMessage(messages.archivedTopics)}</div>
+        <div className="pt-3 px-4 font-weight-bold dark-black-color">{intl.formatMessage(messages.archivedTopics)}</div>
         {renderArchivedTopics}
       </div>
     </>

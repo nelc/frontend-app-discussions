@@ -33,7 +33,7 @@ const PostFooter = ({
   }, [id, voted]);
 
   return (
-    <div className="d-flex align-items-center ml-n1.5 mt-10px" style={{ height: '32px' }} data-testid="post-footer">
+    <div className="d-flex align-items-center ml-1 mt-10px" style={{ height: '32px' }} data-testid="post-footer">
       {voteCount !== 0 && (
         <LikeButton
           count={voteCount}
@@ -57,7 +57,7 @@ const PostFooter = ({
               return true;
             }}
             iconAs={Icon}
-            iconClassNames="follow-icon-dimensions"
+            iconClassNames="follow-icon-dimensions dark-black-color"
             className="post-footer-icon-dimensions"
             alt="Follow"
           />

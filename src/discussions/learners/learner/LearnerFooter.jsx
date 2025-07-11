@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Icon, OverlayTrigger, Tooltip } from '@openedx/paragon';
 import {
-  Edit, QuestionAnswerOutline, Report, ReportGmailerrorred,
+  Edit, Report, ReportGmailerrorred,
 } from '@openedx/paragon/icons';
 import { useSelector } from 'react-redux';
 
@@ -11,6 +11,7 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 
 import { selectUserHasModerationPrivileges, selectUserIsGroupTa } from '../../data/selectors';
 import messages from '../messages';
+import QuestionAnswerOutlineIcon from './question-answer-outline.svg';
 
 const LearnerFooter = ({
   inactiveFlags, activeFlags, threads, responses, replies, username,
@@ -34,7 +35,7 @@ const LearnerFooter = ({
         )}
       >
         <div className="d-flex align-items-center">
-          <Icon src={QuestionAnswerOutline} className="icon-size mr-2" />
+          <img src={QuestionAnswerOutlineIcon} className="pgn__icon icon-size mr-2" alt="Question Outline Icon" />
           {threads + responses + replies}
         </div>
       </OverlayTrigger>

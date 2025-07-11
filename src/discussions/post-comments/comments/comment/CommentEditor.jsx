@@ -165,6 +165,7 @@ const CommentEditor = ({
           <PostPreviewPanel htmlNode={values.comment} />
           <div className="d-flex py-2 justify-content-end">
             <Button
+              className="secondary-color-btn"
               variant="outline-primary"
               onClick={() => handleCloseEditor(resetForm)}
             >

@@ -5,7 +5,7 @@ import {
   Badge, Icon, OverlayTrigger, Tooltip,
 } from '@openedx/paragon';
 import {
-  People, QuestionAnswer, QuestionAnswerOutline,
+  People,
   StarFilled, StarOutline, ThumbUpFilled, ThumbUpOutline,
 } from '@openedx/paragon/icons';
 import { useSelector } from 'react-redux';
@@ -15,6 +15,8 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 
 import timeLocale from '../../common/time-locale';
 import { selectUserHasModerationPrivileges } from '../../data/selectors';
+import OutlineChatIcon from './chat-icon.svg';
+import FilledChatIcon from './filled-chat-icon.svg';
 import messages from './messages';
 
 const PostSummaryFooter = ({
@@ -35,7 +37,7 @@ const PostSummaryFooter = ({
   const userHasModerationPrivileges = useSelector(selectUserHasModerationPrivileges);
 
   return (
-    <div className="d-flex align-items-center text-gray-700" style={{ height: '24px' }}>
+    <div className="d-flex align-items-center text-gray-700" style={{ height: '28px' }}>
       <div className="d-flex align-items-center mr-4.5">
         <OverlayTrigger
           overlay={(
@@ -76,12 +78,9 @@ const PostSummaryFooter = ({
               </Tooltip>
             )}
           >
-            <Icon
-              src={unreadCommentCount ? QuestionAnswer : QuestionAnswerOutline}
-              className="post-summary-comment-count-dimensions mr-0.5"
-            >
-              <span className="sr-only">{' '} {intl.formatMessage(messages.activity)}</span>
-            </Icon>
+            <div className="post-summary-comment-count-dimensions mr-0.5 pgn__icon">
+              <img src={unreadCommentCount ? FilledChatIcon : OutlineChatIcon} alt="Chat Icon" />
+            </div>
           </OverlayTrigger>
           {commentCount}
         </div>

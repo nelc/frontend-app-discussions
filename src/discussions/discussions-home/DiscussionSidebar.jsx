@@ -51,7 +51,7 @@ const DiscussionSidebar = ({ displaySidebar, postActionBarRef }) => {
       ref={sidebarRef}
       className={classNames('flex-column position-sticky', {
         'd-none': !displaySidebar,
-        'd-flex overflow-auto box-shadow-centered-1': displaySidebar,
+        'd-flex overflow-auto': displaySidebar,
         'w-100': !isOnDesktop,
         'sidebar-desktop-width': isOnDesktop && !isOnXLDesktop,
         'sidebar-tablet-width': isOnTablet && !isOnDesktop,

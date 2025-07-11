@@ -65,7 +65,7 @@ const SectionBaseGroup = ({
       data-section-id={sectionId}
       data-testid="section-group"
     >
-      <div className="pt-3 px-4 font-weight-bold">
+      <div className="pt-3 px-4 font-weight-bold dark-black-color">
         {sectionTitle || intl.formatMessage(messages.unnamedSection)}
       </div>
       {renderSection}

@@ -59,7 +59,7 @@ const PostLink = ({
   return (
     <Link
       className={
-          classNames('discussion-post p-0 text-decoration-none text-gray-900', {
+          classNames('discussion-post p-0 text-decoration-none dark-black-color', {
             'border-bottom border-light-400': showDivider,
           })
         }
@@ -71,8 +71,7 @@ const PostLink = ({
       <div
         className={
             classNames(
-              'd-flex flex-row pt-2 pb-2 px-4 border-primary-500 position-relative',
-              { 'bg-light-300': isPostRead },
+              'd-flex flex-row pt-2 pb-2 px-4 position-relative',
               { 'post-summary-card-selected': id === selectedPostId },
             )
           }
@@ -89,13 +88,13 @@ const PostLink = ({
             <div className="d-flex align-items-center pb-0 mb-0 flex-fill">
               <div className="text-truncate mr-1">
                 <span className={classNames(
-                  'font-weight-500 font-size-14 text-primary-500 font-style align-bottom mr-1',
+                  'font-weight-bolder font-size-14  font-style align-bottom mr-1',
                   { 'font-weight-bolder': !read },
                 )}
                 >
                   {title}
                 </span>
-                <span className="text-gray-700 font-weight-normal font-size-14 font-style align-bottom">
+                <span className="font-weight-normal font-size-14 font-style align-bottom">
                   {isPostPreviewAvailable(previewBody) ? previewBody : intl.formatMessage(messages.postWithoutPreview)}
                 </span>
               </div>

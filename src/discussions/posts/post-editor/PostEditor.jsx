@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import {
   Button, Form, Spinner, StatefulButton,
 } from '@openedx/paragon';
-import { Help, Post } from '@openedx/paragon/icons';
 import { Formik } from 'formik';
 import { isEmpty } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,8 +46,10 @@ import {
 import { hidePostEditor } from '../data';
 import { selectThread } from '../data/selectors';
 import { createNewThread, fetchThread, updateExistingThread } from '../data/thunks';
+import DiscussionIcon from '../post/chat-icon.svg';
 import messages from './messages';
 import PostTypeCard from './PostTypeCard';
+import QuestionMarkIcon from './question-mark-icon.svg';
 
 const PostEditor = ({
   editExisting,
@@ -258,13 +259,13 @@ const PostEditor = ({
             value="discussion"
             selected={values.postType === 'discussion'}
             type={intl.formatMessage(messages.discussionType)}
-            icon={<Post />}
+            icon={<img src={DiscussionIcon} aria-hidden="true" alt="Discussions Icon" />}
           />
           <PostTypeCard
             value="question"
             selected={values.postType === 'question'}
             type={intl.formatMessage(messages.questionType)}
-            icon={<Help />}
+            icon={<img src={QuestionMarkIcon} aria-hidden="true" alt="Question Mark Icon" />}
           />
         </Form.RadioSet>
         <div className="d-flex flex-row my-4.5 justify-content-between">
@@ -412,7 +413,7 @@ const PostEditor = ({
           <FormikErrorFeedback name="comment" />
         </div>
         <PostPreviewPanel htmlNode={values.comment} isPost editExisting={editExisting} />
-        <div className="d-flex flex-row mt-n4 w-75 text-primary font-style">
+        <div className="d-flex flex-row mt-n4 w-75 font-style">
           {!editExisting && (
           <>
             <Form.Group>
@@ -421,7 +422,7 @@ const PostEditor = ({
                 checked={values.follow}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className="mr-4.5"
+                className="mr-4.5 checkBoxWrap"
               >
                 <span className="font-size-14">
                   {intl.formatMessage(messages.followPost)}
@@ -458,7 +459,7 @@ const PostEditor = ({
               pending: intl.formatMessage(messages.submitting),
             }}
             state={submitting ? 'pending' : 'default'}
-            className="ml-2"
+            className="ml-2 submitButton"
             variant="primary"
             onClick={handleSubmit}
           />

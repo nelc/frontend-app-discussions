@@ -14,8 +14,8 @@ const EmptyPage = ({
   fullWidth = false,
 }) => {
   const containerClasses = classNames(
-    'min-content-height justify-content-center align-items-center d-flex w-100 flex-column',
-    { 'bg-light-400': !fullWidth },
+    'min-content-height justify-content-center align-items-center d-flex w-100 flex-column bg-light-grey',
+    { 'bg-light-grey': !fullWidth },
   );
 
   return (

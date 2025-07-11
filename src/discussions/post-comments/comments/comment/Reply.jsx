@@ -140,7 +140,7 @@ const Reply = ({ responseId }) => {
               postCreatedAt={createdAt}
               postOrComment
             />
-            <div className="ml-auto d-flex">
+            <div className="ml-auto d-flex buttonActionWrap">
               <ActionsDropdown
                 actionHandlers={actionHandlers}
                 contentType={ContentTypes.COMMENT}
@@ -165,7 +165,7 @@ const Reply = ({ responseId }) => {
             <HTMLLoader
               componentId="reply"
               htmlNode={renderedBody}
-              cssClassName="html-loader text-break font-style text-primary-500"
+              cssClassName="html-loader text-break font-style dark-black-color"
               testId={id}
             />
           )}

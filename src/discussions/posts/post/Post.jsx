@@ -183,7 +183,7 @@ const Post = ({ handleAddResponseButton }) => {
         postType={postType}
         title={title}
       />
-      <div className="d-flex mt-14px text-break font-style text-primary-500">
+      <div className="d-flex mt-14px text-break font-style dark-black-color">
         <HTMLLoader htmlNode={renderedBody} componentId="post" cssClassName="html-loader w-100" testId={postId} />
       </div>
       {(topicContext || topic) && (
@@ -198,6 +198,7 @@ const Post = ({ handleAddResponseButton }) => {
             {intl.formatMessage(messages.relatedTo)}{' '}
           </span>
           <Hyperlink
+            className="color-allports"
             target="_top"
             destination={topicContext ? (
               topicContext.unitLink

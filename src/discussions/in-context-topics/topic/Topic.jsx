@@ -38,9 +38,9 @@ const Topic = ({
         tabIndex={(isSelected(topic.id) || index === 0) ? 0 : -1}
       >
         <div className="d-flex flex-row pt-2.5 pb-2 px-4">
-          <div className="d-flex flex-column flex-fill" style={{ minWidth: 0 }}>
+          <div className="d-flex flex-column flex-fill dark-black-color" style={{ minWidth: 0 }}>
             <div className="d-flex flex-column justify-content-start mw-100 flex-fill">
-              <div className="topic-name text-truncate">
+              <div className="topic-name text-truncate dark-black-color">
                 {topic?.name || topic?.displayName || intl.formatMessage(messages.unnamedTopicSubCategories)}
               </div>
             </div>

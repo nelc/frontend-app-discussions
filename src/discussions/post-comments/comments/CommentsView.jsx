@@ -92,7 +92,7 @@ const CommentsView = ({ threadType }) => {
              variant="plain"
              block="true"
              className="card mb-4 px-0 border-0 py-10px mt-2 font-style font-weight-500
-                    line-height-24 font-size-14 text-primary-500"
+                    line-height-24 font-size-14"
              onClick={handleAddResponse}
              data-testid="add-response"
            >

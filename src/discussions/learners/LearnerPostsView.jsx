@@ -84,9 +84,10 @@ const LearnerPostsView = () => {
           style={{ padding: '18px' }}
           size="inline"
           onClick={() => navigate({ ...discussionsPath(Routes.LEARNERS.PATH, { courseId })(location) })}
+          className="dark-black-color"
           alt={intl.formatMessage(messages.back)}
         />
-        <div className="text-primary-500 font-style font-weight-bold py-2.5">
+        <div className="dark-black-color font-style font-weight-bold py-2.5">
           {intl.formatMessage(messages.activityForLearner, { username: capitalize(username) })}
         </div>
         <div style={{ padding: '18px' }} />
