@@ -31,7 +31,7 @@
   "dependencies": {
     "@edx/brand": "github:nelc/brand-openedx#open-release/teak.nelp",
     "@edx/frontend-component-footer": "^14.6.0",
-    "@edx/frontend-component-header": "^6.2.0",
+    "@edx/frontend-component-header": "npm:@edunext/frontend-component-header@6.6.1-nelp.1",
     "@edx/frontend-platform": "npm:@edunext/frontend-platform@^8.3.11",
     "@edx/openedx-atlas": "^0.6.0",
     "@openedx/paragon": "^23.4.5",
