@@ -1,7 +1,7 @@
-# This workflow deploys a Micro Frontend (MFE) application to an AWS S3 bucket
+# This workflow deploys a Micro Frontend (MFE) application to a bucket
 #
 # Purpose:
-# - Deploys the compiled frontend assets to an S3 bucket for hosting
+# - Deploys the compiled frontend assets to a bucket for hosting
 # - Uses a reusable workflow from nelc/actions-hub
 # - Can target either staging or production environments
 #
@@ -15,7 +15,7 @@
 # - For production deployments, the workflow must be run from the production branch
 # - Stage deployments can be run from any branch
 
-name: MFE S3 Bucket Deployment 🚀
+name: MFE Bucket Deployment 🚀
 
 on:
   workflow_dispatch:
@@ -30,7 +30,7 @@ on:
           - prod
           - advanced
       BUCKET_NAME:
-        description: 'S3 bucket (advanced only)'
+        description: 'bucket (advanced only)'
         required: false
         type: string
         default: ''
@@ -38,27 +38,22 @@ on:
         description: 'CDN path (advanced only)'
         required: false
         type: string
-      AWS_CLOUDFRONT_DISTRIBUTION_ID:
-        description: 'CloudFront ID (advanced only)'
-        required: false
-        type: string
 
 jobs:
   deploy_advanced_config:
     name: Deploy (advanced)
     if: inputs.environment == 'advanced'
-    uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@main
+    uses: nelc/actions-hub/.github/workflows/mfe-bucket-deployment.yml@main
     with:
       ENVIRONMENT: ${{ inputs.environment }}
       BUCKET_NAME: ${{ inputs.BUCKET_NAME }}
       PUBLIC_PATH_CDN: ${{ inputs.PUBLIC_PATH_CDN }}
-      AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ inputs.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
     secrets: inherit
 
   deploy_predefined_env:
     name: Deploy (stage/prod)
     if: inputs.environment != 'advanced'
-    uses: nelc/actions-hub/.github/workflows/mfe-s3-bucket-deployment.yml@main
+    uses: nelc/actions-hub/.github/workflows/mfe-bucket-deployment.yml@main
     with:
       ENVIRONMENT: ${{ inputs.environment }}
     secrets: inherit
