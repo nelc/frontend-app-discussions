@@ -28,31 +28,10 @@ on:
         options:
           - stage
           - prod
-          - advanced
-      BUCKET_NAME:
-        description: 'bucket (advanced only)'
-        required: false
-        type: string
-        default: ''
-      PUBLIC_PATH_CDN:
-        description: 'CDN path (advanced only)'
-        required: false
-        type: string
 
 jobs:
-  deploy_advanced_config:
-    name: Deploy (advanced)
-    if: inputs.environment == 'advanced'
-    uses: nelc/actions-hub/.github/workflows/mfe-bucket-deployment.yml@main
-    with:
-      ENVIRONMENT: ${{ inputs.environment }}
-      BUCKET_NAME: ${{ inputs.BUCKET_NAME }}
-      PUBLIC_PATH_CDN: ${{ inputs.PUBLIC_PATH_CDN }}
-    secrets: inherit
-
-  deploy_predefined_env:
-    name: Deploy (stage/prod)
-    if: inputs.environment != 'advanced'
+  deploy_mfe:
+    name: Deploy ${{ inputs.environment }}
     uses: nelc/actions-hub/.github/workflows/mfe-bucket-deployment.yml@main
     with:
       ENVIRONMENT: ${{ inputs.environment }}
