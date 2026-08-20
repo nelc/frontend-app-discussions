@@ -1,0 +1,38 @@
+# This workflow deploys a Micro Frontend (MFE) application to a bucket
+#
+# Purpose:
+# - Deploys the compiled frontend assets to a bucket for hosting
+# - Uses a reusable workflow from nelc/actions-hub
+# - Can target either staging or production environments
+#
+# Trigger:
+# - Manual trigger only (workflow_dispatch)
+#
+# Inputs:
+# - environment: Choose between 'stage' (default) or 'prod' environments
+#
+# Notes:
+# - For production deployments, the workflow must be run from the production branch
+# - Stage deployments can be run from any branch
+
+name: MFE Bucket Deployment 🚀
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy:'
+        required: true
+        default: 'stage'
+        type: choice
+        options:
+          - stage
+          - prod
+
+jobs:
+  deploy_mfe:
+    name: Deploy ${{ inputs.environment }}
+    uses: nelc/actions-hub/.github/workflows/mfe-bucket-deployment.yml@main
+    with:
+      ENVIRONMENT: ${{ inputs.environment }}
+    secrets: inherit
