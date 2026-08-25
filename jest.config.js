@@ -25,3 +25,20 @@ mergedConfig.transform['^.+\\.[tj]sx?$'] = [
 ];
 
 module.exports = mergedConfig;
+
+module.exports.transformIgnorePatterns = [
+  '/node_modules/(?!(@edx|@edunext|@openedx))',
+];
+
+module.exports.transform["^.+\\.[tj]sx?$"] = [
+  'ts-jest',
+  {
+    isolatedModules: true,
+    diagnostics: false,
+    tsconfig: {
+      jsx: 'react-jsx',
+      esModuleInterop: true,
+      allowSyntheticDefaultImports: true
+    }
+  }
+]
